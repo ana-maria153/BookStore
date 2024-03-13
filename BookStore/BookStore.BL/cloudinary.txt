@@ -1,0 +1,7 @@
+paxoso6266@hisotyr.com:Paxoso6266@hisotyr.com
+
+  "CloudinarySettings": {
+    "CloudName": "dwzqcfjad",
+    "ApiKey": "822755584624715",
+    "ApiSecret": "cpb6AzxitA12yN4Lc55wkPPNKpo"
+  }

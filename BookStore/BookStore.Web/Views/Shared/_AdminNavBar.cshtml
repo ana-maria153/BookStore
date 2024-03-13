@@ -1,0 +1,8 @@
+﻿<nav style="height: 70px;" class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+    <a href="#" class="sidebar-toggler ms-5 mt-1">
+        <h3 class="text-primary">DASHBOARD</h3>
+    </a>
+    <form class="form-inline" style="float: right;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+    </form>
+</nav>
