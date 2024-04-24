@@ -1,0 +1,51 @@
+﻿@using BookStore.DAL.Models
+@model List<Book>
+
+@if (Model != null && Model.Count() != 0)
+{
+    <section id="special-offer" class="bookshelf pb-5 mb-5">
+        <div class="section-header align-center">
+            <div class="title">
+                <span>Grab your opportunity</span>
+            </div>
+            <h2 class="section-title">Books with offer</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="inner-content">
+                    <div class="product-list" data-aos="fade-up">
+                        <div class="grid product-grid">
+                            @foreach (var item in Model)
+                            {
+                                <div class="product-item">
+                                    <a href="@Url.Action("BookDetails", "home",new {@pubId = item.PublicID})">
+                                        <figure class="product-style">
+                                            <img src="@item.Path" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
+                                                Add to
+                                                Cart
+                                            </button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>@item.Title</h3>
+                                            <span>@item.Author</span>
+                                            <div class="item-price">
+                                                <span class="prev-price"> @(item.Price + (item.Price * 0.1)) Lei</span>@item.Price Lei
+                                            </div>
+                                        </figcaption>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                        <!--grid-->
+                    </div>
+                </div>
+                <!--inner-content-->
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <h3>Sorry, something went wrong</h3>
+}

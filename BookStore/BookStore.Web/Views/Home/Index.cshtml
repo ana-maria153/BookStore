@@ -1,33 +1,26 @@
-﻿@using BookStore.DAL.Models
-@model List<Book>
+﻿@model HomeIndexViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="owl-carousel">
-    <div><img src="https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image"></div>
-    <div><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image"></div>
-    <div><img src="https://images.unsplash.com/photo-1588581939864-064d42ace7cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image"></div>
-    <div><img src="https://images.unsplash.com/photo-1600431972041-fb45a99be8e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image"></div>
-    <div><img src="https://images.unsplash.com/photo-1481121749114-c5488c93b0d1?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image"></div>
-</div>
+<partial name="_BillBoard" model="@Model.BillBoardBooks" />
+<partial name="_FeaturedBooks" model="@Model.SpecialOfferBooksBooks" />
 
-<div class="row">
-    @foreach (var el in Model)
-    {
-        <div class="col-lg-3 col-md-6">
-            <div class="card my-2 shadow">
-                <img class="card-img-top img-card px-4 pt-2" src="@el.Path">
-                <div class="card-body">
-                    <h5 class="card-title">@el.Title</h5>
-                    <div class=" row">
-                        <p class="col-7">@el.Author</p>
-                        <p class="col-7">@el.Editura</p>
-                        <p class="col-5 price">@el.Price lei MD</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+<section id="quotation" class="align-center pb-5 mb-5">
+	<div class="inner-content">
+		<h2 class="section-title divider">Quote of the day</h2>
+		<blockquote data-aos="fade-up">
+			<q>
+				“The more that you read, the more things you will know. The more that you learn, the more places
+				you’ll go.”
+			</q>
+			<div class="author-name">Dr. Seuss</div>
+		</blockquote>
+	</div>
+</section>
+
+<partial name="_SpecialOffer" model="@Model.SpecialOfferBooksBooks" />
+<partial name="_BestSelingBook" model="@Model.BestSelling" />
+
+

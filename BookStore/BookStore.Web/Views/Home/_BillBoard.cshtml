@@ -1,0 +1,47 @@
+﻿@using BookStore.DAL.Models
+@model List<Book>
+
+@if (Model != null && Model.Count() != 0)
+{
+    <section id="billboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <button class="prev slick-arrow">
+                        <i class="icon icon-arrow-left"></i>
+                    </button>
+
+                    <div class="main-slider pattern-overlay">
+                        @foreach (var item in Model)
+                        {
+                            <div class="slider-item">
+                                <div class="banner-content">
+                                    <h2 class="banner-title">@item.Title</h2>
+                                    <p>@item.Description</p>
+                                    <div class="btn-wrap">
+                                        <a href="@Url.Action("BookDetails", "home", new {@pubId = item.PublicID})" class="btn btn-outline-accent btn-accent-arrow">
+                                            Read More<i class="icon icon-ns-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <img src="@item.Path" alt="banner" class=" mt-3 banner-image book-img">
+                            </div>
+
+                            <!--slider-item-->
+                        }
+                    </div><!--slider-->
+
+                    <button class="next slick-arrow">
+                        <i class="icon icon-arrow-right"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <h3>Sorry, something went wrong</h3>
+}

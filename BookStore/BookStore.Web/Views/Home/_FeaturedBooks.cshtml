@@ -1,0 +1,84 @@
+﻿@using BookStore.DAL.Models
+@model List<Book>
+@if (Model != null && Model.Count() != 0)
+{
+    <section id="featured-books" class="py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="section-header align-center">
+                        <div class="title">
+                            <span>Some quality items</span>
+                        </div>
+                        <h2 class="section-title">Featured Books</h2>
+                    </div>
+
+                    <div class="product-list" data-aos="fade-up">
+                        <div class="row">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="@item.Path" alt="Books" class="product-item">
+                                            <div class="like-section">
+                                                <button class="add-to-cart" data-product-tile="add-to-cart" onclick="likeBook('@item.PublicID', event)">
+                                                    <i class="fa fa-heart"></i> Like
+                                                    <span class="like-count" id="like-count-@item.PublicID">@item.BookLikes</span>
+                                                </button>
+                                            </div>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>@item.Title</h3>
+                                            <span>@item.Author</span>
+                                            <div class="item-price">@item.Price Lei</div>
+                                        </figcaption>
+                                        <a href="@Url.Action("BookDetails", "home", new {@pubId = item.PublicID})" class="card-link"></a>
+                                    </div>
+                                </div>
+                            }
+                        </div><!--ft-books-slider-->
+                    </div><!--grid-->
+                </div><!--inner-content-->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="btn-wrap align-right">
+                        <a href="#" class="btn-accent-arrow">
+                            View all products I need To add this here <i class="icon icon-ns-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <h3>Sorry, something went wrong</h3>
+}
+
+<script>
+    function likeBook(bookId, event) {
+        event.preventDefault(); // Prevent the default behavior of the button
+        // Send a POST request to like the book
+        $.post('/home/likebook', { pubId: bookId }, function () {
+            // Update the like count in the UI
+            var likeCountElement = $('#like-count-' + bookId);
+            var currentLikes = parseInt(likeCountElement.text());
+            likeCountElement.text(currentLikes + 1);
+        });
+    }
+
+    // Click event for the card link
+    $(document).on('click', '.card-link', function (event) {
+        // Prevent default behavior only if the click event was not from the like button
+        if (!$(event.target).hasClass('like-button')) {
+            event.preventDefault();
+        }
+    });
+</script>
