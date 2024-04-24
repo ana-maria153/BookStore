@@ -22,12 +22,19 @@ namespace BookStore.DAL.Models
         [Required(ErrorMessage = "Campul 'Editura' este obligatoriu!")]
         public string? Editura { get; set; }
         [DisplayName("Pret:")]
-        [Required(ErrorMessage = "Campul 'Pret' este obligatoriu!")]
+        [Required(ErrorMessage = "You need to insert the price!")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
         public float Price { get; set; }
         public string? Path { get; set; }
+        public int BookLikes { get; set; } = 0;
         [NotMapped]
         [DisplayName("Book cover:")]
         public IFormFile? FormFile { get; set; }
         public string? PublicID { get; set; }
+
+
+        [DisplayName("Book type:")]
+        public Guid BookTypeId { get; set; }
+        public BookType? BookType { get; set; }
     }
 }
