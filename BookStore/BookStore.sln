@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.BookStore.DAL", "BookStore.DAL\3.BookStore.DAL.csproj", "{9BB32AD2-71A2-4226-AA97-33DB5874CAEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.BookStore.DAL", "BookStore.DAL\3.BookStore.DAL.csproj", "{9BB32AD2-71A2-4226-AA97-33DB5874CAEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.BookStore.BL", "BookStore.BL\2.BookStore.BL.csproj", "{445E29BF-03D2-4EEF-AE46-E8A6F5CED02D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.BookStore.BL", "BookStore.BL\2.BookStore.BL.csproj", "{445E29BF-03D2-4EEF-AE46-E8A6F5CED02D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.BookStore.Web", "BookStore.Web\1.BookStore.Web.csproj", "{4004DB68-CF0C-4BD6-B147-78C26A893F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.BookStore.Web", "BookStore.Web\1.BookStore.Web.csproj", "{4004DB68-CF0C-4BD6-B147-78C26A893F45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
