@@ -1,0 +1,38 @@
+﻿@using BookStore.DAL.Models
+@model List<BookType>
+<div class="container">
+    <h2>Tipuri de carti</h2>
+    @if (!(Model.Count == 0))
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nume</th>
+                    <th>Descriere</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.TypeName</td>
+                        <td>@book.TypeDescription</td>
+                        <td class="d-flex">
+                            @Html.ActionLink("Edit", "EditBookType", "admin", new { @bookTypeId = book.PublicId }, new { @class = "btn btn-block btn-primary mx-2" })
+                            @using (Html.BeginForm("DeleteBookType", "admin", new { @id = book.PublicId }, FormMethod.Post))
+                            {
+                                <input class="btn btn-block btn-danger" type="submit" value="Delete">
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>Nu sunt inregistrate tipuri inregistrate !</h3>
+    }
+</div>

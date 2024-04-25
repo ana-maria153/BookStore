@@ -1,0 +1,30 @@
+﻿@using BookStore.DAL.Models
+@model BookType
+
+
+@using (Html.BeginForm("UpdateBookType", "admin", FormMethod.Post))
+{
+    <div class="pt-3">
+        <h1 class="text-center">Editare carte:</h1>
+        <div class="row justify-content-between">
+            <div class="col-lg-5 form-group">
+                @Html.LabelFor(a => a.TypeName)
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.BookTypeID, new { @class = "form-control d-none", @content = $"{Model.BookTypeID}" })
+                    @Html.TextBoxFor(a => a.TypeName, new { @class = "form-control", @content = $"{Model.TypeName}" })
+                </div>
+                @Html.ValidationMessageFor(a => a.TypeName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-5 form-group">
+                @Html.LabelFor(a => a.TypeDescription)
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.TypeDescription, new { @class = "form-control", @content = $"{Model.TypeDescription}" })
+                </div>
+                @Html.ValidationMessageFor(a => a.TypeDescription, "", new { @class = "text-danger" })
+            </div>
+            <div class="my-3 col-lg-4">
+                <input class="btn btn-block btn-success" type="submit" value="Salveaza">
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@using BookStore.DAL.Models
+@model BookType
+
+@using (Html.BeginForm("RegisterBookType", "admin", FormMethod.Post))
+{
+    <div class="pt-3">
+        <h1 class="text-center">Inregistrare carte:</h1>
+        <div class="row justify-content-between">
+            <div class="col-lg-12 form-group">
+                @Html.LabelFor(a => a.TypeName)
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.TypeName, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(a => a.TypeName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-12 form-group">
+                @Html.LabelFor(a => a.TypeDescription)
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.TypeDescription, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(a => a.TypeDescription, "", new { @class = "text-danger" })
+            </div>
+            <div class="my-3 col-lg-4">
+                <input class="btn btn-block btn-danger" type="submit" value="Inregistreaza">
+            </div>
+        </div>
+    </div>
+}
