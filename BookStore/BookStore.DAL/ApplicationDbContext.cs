@@ -8,7 +8,10 @@ namespace BookStore.DAL
     {
         private readonly string? _connectionString;
 
+        public DbSet<BookType> BookTypes { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public ApplicationDbContext(string? connectionString)
         {

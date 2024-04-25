@@ -4,6 +4,7 @@ using BookStore.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace _3.BookStore.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240314085431_AddedBookLikes")]
+    partial class AddedBookLikes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,9 +75,6 @@ namespace _3.BookStore.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TypeDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -86,57 +86,6 @@ namespace _3.BookStore.DAL.Migrations
                     b.HasKey("BookTypeID");
 
                     b.ToTable("BookTypes");
-                });
-
-            modelBuilder.Entity("BookStore.DAL.Models.Order", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Addres")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surename")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BookStore.DAL.Models.OrderItem", b =>
-                {
-                    b.Property<Guid>("OrderItemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("OrderID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderItemBookID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderItemID");
-
-                    b.HasIndex("OrderID");
-
-                    b.HasIndex("OrderItemBookID");
-
-                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -348,21 +297,6 @@ namespace _3.BookStore.DAL.Migrations
                     b.Navigation("BookType");
                 });
 
-            modelBuilder.Entity("BookStore.DAL.Models.OrderItem", b =>
-                {
-                    b.HasOne("BookStore.DAL.Models.Order", null)
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderID");
-
-                    b.HasOne("BookStore.DAL.Models.Book", "OrderItemBook")
-                        .WithMany()
-                        .HasForeignKey("OrderItemBookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OrderItemBook");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -412,11 +346,6 @@ namespace _3.BookStore.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BookStore.DAL.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
