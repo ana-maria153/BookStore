@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@using BookStore.DAL.Models
+@model IEnumerable<IdentityUser>
+
+<h2>Manage Users</h2>
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Current Role</th>
+                <th>New Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>
+                        @{
+                            var userRoles = await UserManager.GetRolesAsync(user);
+                            if (userRoles.Any())
+                            {
+                                foreach (var role in userRoles)
+                                {
+                                    <span>@role</span>
+                                }
+                            }
+                            else
+                            {
+                                <span>No role assigned</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <select class="form-control" onchange="updateUserRole('@user.Id', this.value)">
+                            <option value="">Select Role</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                <option value="@role.Id">@role.Name</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No users found.</p>
+}
+
+<script>
+    async function updateUserRole(userId, newRoleId) {
+        try {
+            const update = {
+                userId: userId,
+                newRoleId: newRoleId
+            };
+
+            const response = await fetch('/admin/UpdateUserRole', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(update)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update role');
+            }
+
+            console.log('Role updated successfully.');
+            window.location.href = '/admin/AdminUserRoles';
+        } catch (error) {
+            console.error('Error updating role:', error.message);
+        }
+    }
+</script>
