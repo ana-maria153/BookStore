@@ -44,9 +44,20 @@ namespace BookStore.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult BookListing(string pubId)
+        public IActionResult BookListing(string? pubId)
         {
-            return View("BookListing");
+            var vm = new BookListViewModel();
+            vm.BookTypes = _bookService.GetBookTypes();
+            if(string.IsNullOrEmpty(pubId))
+            {
+                vm.Books = _bookService.GetAllBooks();
+            }
+            else
+            {
+                var catid = _bookService.GetBookType(pubId).BookTypeID;
+                vm.Books = _bookService.GetAllBooks().Where(x=>x.BookTypeId == catid).ToList();
+            }
+            return View("BookListing", vm);
         }
 
         [HttpPost]
