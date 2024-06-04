@@ -1,0 +1,57 @@
+﻿@using BookStore.DAL.Models
+@model Order
+
+<div class="container">
+    <div class="mt-4 row">
+        <div class="card col-lg-5 mx-2">
+            <div class="card-header">
+                <h3>Order details</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Order ID:</strong> @Model.ID.ToString().Substring(0, 5)</p>
+            </div>
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+        <div class="card col-lg-5 mx-2">
+            <div class="card-header">
+                <h3>Buyer details</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>User Name:</strong> @Model.Name @Model.Surename</p>
+                <p><strong>Contacts:</strong> @Model.Phone</p>
+                <p><strong>Address:</strong> @Model.Addres</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <h3>Order items:</h3>
+        @foreach (var orderItem in Model.OrderItems)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>@orderItem.OrderItemBook.Title</h5>
+                </div>
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-auto">
+                        <p><strong>Quantity:</strong> @orderItem.Quantity</p>
+                        <p>
+                            <strong>Total Price:</strong>
+                            @(orderItem.Quantity * orderItem.OrderItemBook.Price)
+                        </p>
+                    </div>
+                    <img src="@orderItem.OrderItemBook.Path" alt="@orderItem.OrderItemBook.Title" style="width: 100px; height: 100px;" class="img-fluid">
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="mt-4">
+        <h2>Total for this Order</h2>
+        <div>
+            <p><strong>Total items:</strong> @Model.TotalItems()</p>
+            <p><strong>Total price:</strong> @Model.TotalCost()</p>
+        </div>
+    </div>
+</div>

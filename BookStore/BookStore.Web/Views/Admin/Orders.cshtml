@@ -1,0 +1,46 @@
+﻿@using BookStore.DAL.Models
+@model OrderListViewModel
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-lg-5">
+            <h2>Lista comenzilor</h2>
+        </div>
+    </div>
+    @if (!(Model.Orders.Count == 0))
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Contact</th>
+                    <th>Delivery Addres</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Model.Orders.IndexOf(order)
+                        </td>
+                        <td>@order.ID.ToString().Substring(0, 5)</td>
+                        <td>@order.Name @order.Surename</td>
+                        <td>@order.Phone</td>
+                        <td>@order.Addres</td>
+                        <td>
+                            <a href="@Url.Action("Details", "admin", new { id = order.ID })" class="btn btn-primary">Detalii</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>Nu au fost plasate comenzi !</h3>
+    }
+</div>
