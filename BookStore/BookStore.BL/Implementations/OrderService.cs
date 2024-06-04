@@ -1,6 +1,7 @@
 ﻿using BookStore.BL.Interfaces;
 using BookStore.DAL;
 using BookStore.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.BL.Implementations;
 
@@ -33,5 +34,14 @@ public class OrderService : IOrderService
         };
         _appDBContext.Orders.Add(Order);
         _appDBContext.SaveChanges();
+    }
+
+    public List<Order> GetOrders()
+    {
+        return _appDBContext.Orders.Include(x=>x.OrderItems).ToList();
+    }
+    public Order GetOrder(Guid ID)
+    {
+        return _appDBContext.Orders.Include(x => x.OrderItems).ThenInclude(x => x.OrderItemBook).FirstOrDefault(x => x.ID == ID);
     }
 }

@@ -8,4 +8,13 @@ public class Order
     public string Addres { get; set; }
     public string Phone { get; set; }
     public List<OrderItem> OrderItems { get; set; }
+
+    public float TotalCost()
+    {
+        return OrderItems.Sum(x => x.OrderItemBook.Price * x.Quantity);
+    }
+    public int TotalItems()
+    {
+       return OrderItems.Sum(x => x.Quantity);
+    }
 }

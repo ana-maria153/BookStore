@@ -57,6 +57,7 @@ namespace BookStore.BL.Implementations
             bookToUpdate.Editura = book.Editura;
             bookToUpdate.Price = book.Price;
             bookToUpdate.Description = book.Description;
+            bookToUpdate.BookTypeId = book.BookTypeId;
             if(book.FormFile != null)
             {
                 _imageService.DeletePhoto(bookToUpdate.PublicID);

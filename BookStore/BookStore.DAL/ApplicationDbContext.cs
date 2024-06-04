@@ -1,4 +1,5 @@
 ﻿using BookStore.DAL.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,17 @@ namespace BookStore.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder opBuilder)
         {
             opBuilder.UseSqlServer(_connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityRole>()
+                .HasData(
+                    new IdentityRole { Id = Guid.Parse("af3c4ceb-2c5f-4b07-abcc-e2cd010de7f5").ToString(), Name = "Moderator", NormalizedName = "MODERATOR" },
+                    new IdentityRole { Id = Guid.Parse("58ff34ee-ed69-4d43-9124-53ac00c07c85").ToString(), Name = "Admin", NormalizedName = "ADMIN" }
+                );
         }
     }
 }
