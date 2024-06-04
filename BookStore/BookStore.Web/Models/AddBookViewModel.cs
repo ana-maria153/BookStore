@@ -1,5 +1,4 @@
-﻿using BookStore.BL.Interfaces;
-using BookStore.DAL.Models;
+﻿using BookStore.DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookStore.Web.Models
