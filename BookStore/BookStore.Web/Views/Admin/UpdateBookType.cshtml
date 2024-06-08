@@ -10,8 +10,8 @@
             <div class="col-lg-5 form-group">
                 @Html.LabelFor(a => a.TypeName)
                 <div class="input-group">
-                    @Html.TextBoxFor(a => a.BookTypeID, new { @class = "form-control d-none", @content = $"{Model.BookTypeID}" })
-                    @Html.TextBoxFor(a => a.TypeName, new { @class = "form-control", @content = $"{Model.TypeName}" })
+                    @Html.TextBoxFor(a => a.PublicId, new { @class = "form-control d-none", @Value = $"{Model.PublicId}" })
+                    @Html.TextBoxFor(a => a.TypeName, new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(a => a.TypeName, "", new { @class = "text-danger" })
             </div>
