@@ -34,7 +34,7 @@ namespace BookStore.DAL.Models
 
 
         [DisplayName("Book type:")]
-        public Guid BookTypeId { get; set; }
+        public Guid? BookTypeId { get; set; }
         public BookType? BookType { get; set; }
     }
 }
