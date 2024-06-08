@@ -102,7 +102,8 @@ namespace BookStore.Web.Controllers
             if (ModelState.IsValid)
             {
                 var btype = _bookService.GetBookType(vm.ChosedBookType);
-                vm.Book.BookTypeId = btype.BookTypeID;
+                if(!string.IsNullOrEmpty(vm.ChosedBookType))
+                    vm.Book.BookTypeId = btype.BookTypeID;
                 _bookService.UpdateBook(vm.Book);
                 return RedirectToAction("BookList");
             }
@@ -145,12 +146,14 @@ namespace BookStore.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateBookType(BookType BType)
         {
+            var toUpdate = _bookService.GetBookType(BType.PublicId);
+            BType.BookTypeID = toUpdate.BookTypeID;
             if (ModelState.IsValid)
             {
                 _bookService.UpdateBookType(BType);
                 return RedirectToAction("BookTypesList");
             }
-            return View("EditBookType", BType.PublicId);
+            return View("UpdateBookType", BType);
         }
 
 

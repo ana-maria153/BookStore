@@ -8,7 +8,7 @@ public class UpdateBookViewModel
     public Book Book { get; set; }
     public IEnumerable<SelectListItem> Types { get; set; }
 
-    public string ChosedBookType { get; set; } = "";
+    public string? ChosedBookType { get; set; } = "";
     public UpdateBookViewModel()
     {
         Types = new List<SelectListItem>();
